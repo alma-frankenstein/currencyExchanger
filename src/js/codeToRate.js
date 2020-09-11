@@ -20,7 +20,8 @@ export function codeToRate(codeMap, code) {
     let rate = codeMap[code];
     return rate;
   } else {
-    return "We can't match that country code";
+    return 0;
+    // return "We can't match that country code";
   }
 }
 

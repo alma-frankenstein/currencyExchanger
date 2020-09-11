@@ -51,15 +51,18 @@ $(document).ready(function() {
       let rates = response.conversion_rates;
       const rateByCode = codeToRate(rates, targetCurrency); // test, returns num
 
-      const converted = converter(usdAmount, rateByCode); //for testing
+      const converted = converter(usdAmount, rateByCode);
 
       console.log("target currency " + targetCurrency);
       console.log(response);
       console.log("rates map " + rates);
       console.log("rate by code " + rateByCode);
       // $('.showAED').text(`The rate to AED is ${response.conversion_rates.AED}. Output of converted is ${converted} `);
-    
-      $('.showOutput').text(`${usdAmount} USD converts to ${converted} ${targetCurrency}`);
+      if (rateByCode != 0) {
+        $('.showOutput').text(`${usdAmount} USD converts to ${converted} ${targetCurrency}`);
+      } else {
+        $('.showOutput').text("Please enter a valid country code");
+      }
     }
   });
 });
