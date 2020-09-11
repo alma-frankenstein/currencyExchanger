@@ -6,8 +6,11 @@ import './css/styles.css';
 $(document).ready(function() {
   $('#inputAmount').click(function() {
     const usdAmount = $('#amount').val();
-    $('#amount').val("");
+    const targetCurrency = $('#target').val();
 
+    $('#amount').val("");
+    $('#target').val("");
+  
     let request = new XMLHttpRequest();
     const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
 
