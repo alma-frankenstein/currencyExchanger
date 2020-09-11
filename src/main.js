@@ -18,24 +18,25 @@ $(document).ready(function() {
     let request = new XMLHttpRequest();
     const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
 
+
     request.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
         const response = JSON.parse(this.responseText);
         getElements(response);
-      } else {
-        const error = JSON.parse(this.responseText);
+      } // else {
+      //   const error = JSON.parse(this.responseText);
 
-        returnError(error);
-      }
+      //   returnError(error);
+      // }
     };
 
     request.open("GET", url, true);
     request.send();
 
-    function returnError(error) {
-      let message = error.result;
-      $('.showErrors').text(`Error: ${message}`);
-    }
+    // function returnError(error) {
+    //   let message = error.result;
+    //   $('.showErrors').text(`Error: ${message}`);
+    // }
 
     function getElements(response) {
       // $('.showInput').text(`You inputted ${usdAmount}`);
