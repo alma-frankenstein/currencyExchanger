@@ -16,9 +16,14 @@ export function codeToRate(codeMap, code) {
   // "DKK": 6.2870,
   // "DOP": 58.2602,
   // };
-  let rate = codeMap[code];
-  return rate;
+  if (code.toUpperCase() in codeMap) {
+    let rate = codeMap[code];
+    return rate;
+  } else {
+    return "We can't match that country code";
+  }
 }
+
 
 // export function converter(inputAmount, conversionRate) {
 //   let output = inputAmount * conversionRate;
