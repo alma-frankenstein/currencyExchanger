@@ -1,3 +1,4 @@
-/* #returnNum {
-  display: none;
-} */
+.showOutput {
+  color: blue;
+  font-size: large;
+}
