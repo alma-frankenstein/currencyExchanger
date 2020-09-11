@@ -4,13 +4,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 
 $(document).ready(function() {
-  $('#submitButton').click(function() {
+  $('#inputAmount').click(function() {
+    const usdAmount = $('#amount').val();
+    $('#amount').val("");
 
-    let amount = $("#inputNum").val();
+    let request = new XMLHttpRequest();
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${usdAmount}&appid=DEMO`;
 
-    $("#returnNum").text(amount);
-    console.log(amount);
-    $("#returnNum").show();
+    request.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) {
+        const response = JSON.parse(this.responseText);
+        getElements(response);
+      }
+    };
+
+    request.open("GET", url, true);
+    request.send();
+
+    function getElements(response) {
+      $('.showInput').text(`You inputted ${usdAmount}`);
+      console.log(response);
+      // $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
+    }
   });
 });
 
