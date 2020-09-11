@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     function getElements(response) {
       $('.showInput').text(`You inputted ${usdAmount}`);
-      // replace lated with parsed obj
+      // replace lated with parsed obj, response.conversion_rates
       let rates =   {
         "USD": 1,
         "AED": 3.6721,
@@ -47,9 +47,9 @@ $(document).ready(function() {
         "CZK": 22.4416,
         "DKK": 6.2870,
         "DOP": 58.2602,
-        };
+      };
       const converted = converter(usdAmount,3); //for testing
-      const cadRate = codeToRate(rates, "CAD"); // test, should return 1.31
+      const cadRate = codeToRate(rates, targetCurrency); // test, should return 1.31
 
       console.log(targetCurrency);
       console.log(response);
