@@ -2,11 +2,13 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
+import { converter } from "./js/converter";
 
 $(document).ready(function() {
   $('#inputAmount').click(function() {
     const usdAmount = $('#amount').val();
     const targetCurrency = $('#target').val();
+    const converted = converter(3,3); //for testing
 
     $('#amount').val("");
     $('#target').val("");
@@ -28,7 +30,8 @@ $(document).ready(function() {
       $('.showInput').text(`You inputted ${usdAmount}`);
       console.log(targetCurrency);
       console.log(response);
-      $('.showAED').text(`The rate to AED is ${response.conversion_rates.AED} `);
+      console.log(converted);
+      $('.showAED').text(`The rate to AED is ${response.conversion_rates.AED}. Output of converted is ${converted} `);
     }
   });
 });
