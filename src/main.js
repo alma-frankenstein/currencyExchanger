@@ -14,33 +14,81 @@ $(document).ready(function() {
     $('#amount').val("");
     $('#target').val("");
 
-  
-    let request = new XMLHttpRequest();
-    const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
+  //////////////////////////////
+//     let request = new XMLHttpRequest();
+//     const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
 
 
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        const response = JSON.parse(this.responseText);
-        getElements(response);
-      } 
-    };
+//     request.onreadystatechange = function() {
+//       if (this.readyState === 4 && this.status === 200) {
+//         const response = JSON.parse(this.responseText);
+//         getElements(response);
+//       } 
+//     };
 
-    request.open("GET", url, true);
-    request.send();
+//     request.open("GET", url, true);
+//     request.send();
 
-    function getElements(response) {
+//     function getElements(response) {
 
-      let rates = response.conversion_rates;
-      const rateByCode = codeToRate(rates, targetCurrency); // test, returns num
+//       let rates = response.conversion_rates;
+//       const rateByCode = codeToRate(rates, targetCurrency); // test, returns num
 
-      const converted = converter(usdAmount, rateByCode);
-      console.log(response);
-      if (rateByCode != 0) {
-        $('.showOutput').text(`${usdAmount} USD converts to ${converted} ${targetCurrency}`);
-      } else {
-        $('.showOutput').text("Please enter a valid country code");
-      }
+//       const converted = converter(usdAmount, rateByCode);
+//       console.log(response);
+//       if (rateByCode != 0) {
+//         $('.showOutput').text(`${usdAmount} USD converts to ${converted} ${targetCurrency}`);
+//       } else {
+//         $('.showOutput').text("Please enter a valid country code");
+//       }
+//     }
+//   });
+// });
+/////////////////////////////////////////////
+let promise = new Promise(function (resolve, reject) {
+  let request = new XMLHttpRequest();
+  const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
+  request.onload = function () {
+    if (this.status === 200) {
+      resolve(request.response);
+    } else {
+      reject(request.response);
     }
-  });
+  };
+  request.open("GET", url, true);
+  request.send();
 });
+
+promise.then(function (response) {
+    let rates = response.conversion_rates;
+    const rateByCode = codeToRate(rates, targetCurrency); 
+    const converted = converter(usdAmount, rateByCode);
+    console.log(response);
+
+    if (rateByCode != 0) {
+      $('.showOutput').text(`${usdAmount} USD converts to ${converted} ${targetCurrency}`);
+    } else {
+      $('.showOutput').text("Please enter a valid country code");
+    }}, function(error) {
+  const errorResponse = JSON.parse(error);
+  console.log(errorResponse);
+  $(".showErrors").text(`error: ${errorResponse.error}`);
+});
+});
+});
+
+
+//     promise.then(function (response) {
+//       const astResponse = JSON.parse(response);
+//       let astArray = astResponse.near_earth_objects["2015-09-08"];
+//       getDistEarth(astArray);
+//       console.log(`${getDistEarth(astArray)}`);
+//       $(".showDist").text(`${getDistEarth(astArray)}`);
+//     }, function(error) {
+//       const astResponse = JSON.parse(error);
+//       console.log(astResponse);
+//       $(".showDist").text(`error: ${astReponse.error_message}`);
+//     });
+
+//   });
+// });
