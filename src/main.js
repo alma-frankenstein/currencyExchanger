@@ -29,7 +29,7 @@ $(document).ready(function() {
     request.send();
 
     function getElements(response) {
-      $('.showInput').text(`You inputted ${usdAmount}`);
+      // $('.showInput').text(`You inputted ${usdAmount}`);
       // replace lated with parsed obj, response.conversion_rates
       // let rates =   {
       //   "USD": 1,
@@ -49,14 +49,17 @@ $(document).ready(function() {
       //   "DOP": 58.2602,
       // };
       let rates = response.conversion_rates;
-      const converted = converter(usdAmount,3); //for testing
-      const cadRate = codeToRate(rates, targetCurrency); // test
+      const rateByCode = codeToRate(rates, targetCurrency); // test, returns num
 
-      console.log(targetCurrency);
+      const converted = converter(usdAmount, rateByCode); //for testing
+
+      console.log("target currency " + targetCurrency);
       console.log(response);
-      console.log(converted);
-      console.log(cadRate);
-      $('.showAED').text(`The rate to AED is ${response.conversion_rates.AED}. Output of converted is ${converted} `);
+      console.log("rates map " + rates);
+      console.log("rate by code " + rateByCode);
+      // $('.showAED').text(`The rate to AED is ${response.conversion_rates.AED}. Output of converted is ${converted} `);
+    
+      $('.showOutput').text(`${usdAmount} USD converts to ${converted} ${targetCurrency}`);
     }
   });
 });
