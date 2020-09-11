@@ -9,7 +9,7 @@ $(document).ready(function() {
     $('#amount').val("");
 
     let request = new XMLHttpRequest();
-    const url = `http://api.openweathermap.org/data/2.5/weather?q=${usdAmount}&appid=DEMO`;
+    const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
 
     request.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
     function getElements(response) {
       $('.showInput').text(`You inputted ${usdAmount}`);
       console.log(response);
-      // $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
+      $('.showAED').text(`The rate to AED is ${response.conversion_rates.AED} `);
     }
   });
 });
