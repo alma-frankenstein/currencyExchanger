@@ -5,17 +5,19 @@ import './css/styles.css';
 
 $(document).ready(function() {
   $('#submitButton').click(function() {
-    const amount = parseInt($("inputNum").val());
+
+    let amount = $("#inputNum").val();
 
     $("#returnNum").text(amount);
+    console.log(amount);
     $("#returnNum").show();
-  })
+  });
 });
 
 
 
-    // const city = $('#location').val();
-    // $('#location').val("");
+// const city = $('#location').val();
+// $('#location').val("");
 
 //     let request = new XMLHttpRequest();
 //     const url = `https://v6.exchangerate-api.com/v6/{process.env.API_KEY}/latest/USD`;
