@@ -8,7 +8,6 @@ $(document).ready(function() {
   $('#inputAmount').click(function() {
     const usdAmount = $('#amount').val();
     const targetCurrency = $('#target').val();
-    const converted = converter(3,3); //for testing
 
     $('#amount').val("");
     $('#target').val("");
@@ -28,6 +27,8 @@ $(document).ready(function() {
 
     function getElements(response) {
       $('.showInput').text(`You inputted ${usdAmount}`);
+      const converted = converter(usdAmount,3); //for testing
+
       console.log(targetCurrency);
       console.log(response);
       console.log(converted);
