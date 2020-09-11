@@ -22,11 +22,20 @@ $(document).ready(function() {
       if (this.readyState === 4 && this.status === 200) {
         const response = JSON.parse(this.responseText);
         getElements(response);
+      } else {
+        const error = JSON.parse(this.responseText);
+
+        returnError(error);
       }
     };
 
     request.open("GET", url, true);
     request.send();
+
+    function returnError(error) {
+      let message = error.result;
+      $('.showErrors').text(`Error: ${message}`);
+    }
 
     function getElements(response) {
       // $('.showInput').text(`You inputted ${usdAmount}`);
