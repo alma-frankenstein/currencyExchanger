@@ -5,25 +5,25 @@ import './css/styles.css';
 
 $(document).ready(function() {
   $('#weatherLocation').click(function() {
-    // const city = $('#location').val();
-    // $('#location').val("");
+//     // const city = $('#location').val();
+//     // $('#location').val("");
 
-    let request = new XMLHttpRequest();
-    const url = `https://v6.exchangerate-api.com/v6/appid=$${process.env.API_KEY}/latest/USD`
+//     let request = new XMLHttpRequest();
+//     const url = `https://v6.exchangerate-api.com/v6/appid=$${process.env.API_KEY}/latest/USD`;
 
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        const response = JSON.parse(this.responseText);
-        getElements(response);
-      }
-    };
+//     request.onreadystatechange = function() {
+//       if (this.readyState === 4 && this.status === 200) {
+//         const response = JSON.parse(this.responseText);
+//         getElements(response);
+//       }
+//     };
 
-    request.open("GET", url, true);
-    request.send();
+//     request.open("GET", url, true);
+//     request.send();
 
-    function getElements(response) {
-      // $('.showHumidity').text(`The humidity in ${city} is ${response.main.humidity}%`);
-      // $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
+//     // function getElements(response) {
+//       // $('.showHumidity').text(`The humidity in ${city} is ${response.main.humidity}%`);
+//       // $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
     }
-  });
-});
+//   });
+// });
