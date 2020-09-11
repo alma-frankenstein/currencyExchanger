@@ -26,6 +26,7 @@ $(document).ready(function() {
 
     function getElements(response) {
       $('.showInput').text(`You inputted ${usdAmount}`);
+      console.log(targetCurrency);
       console.log(response);
       $('.showAED').text(`The rate to AED is ${response.conversion_rates.AED} `);
     }
