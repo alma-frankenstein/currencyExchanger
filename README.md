@@ -16,10 +16,17 @@ This app allows users input a dollar amound and the type of currency they want t
   * Input: $12
   * Output: $12
 
+* Send an API call to get the exchange rate from the country code
+  * Input: code DKK
+  * Output: rate 3.145
+
 * Convert the input amount based on the given exchange rate
   * Input: $12 USD, exchange rate 0.50 AED
   * Output: 6 AED
 
+## Known Bugs
+
+Code doesn't yet handle errors if the user enters a non-numerical currency amount.
 
 ## Setup
 
