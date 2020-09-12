@@ -8,7 +8,7 @@ import { codeToRate } from "./js/codeToRate";
 $(document).ready(function () {
   $("#inputAmount").click(function () {
     const usdAmount = $("#amount").val();
-    const targetCurrency = $("#target").val();
+    const targetCurrency = $("#target").val().toUpperCase();
 
     $("#amount").val("");
     $("#target").val("");
